@@ -1,4 +1,5 @@
 Bacteria[] group;
+boolean foodEaten = true;
 void setup() {
   size(400,400);
   group = new Bacteria[50];
@@ -13,6 +14,16 @@ void draw() {
     group[i].walk();
   }
 }
+void mouseClicked() {
+  int foodParticleX = (int)(Math.random()*401);
+  int foodParticleY = (int)(Math.random()*401);
+  if (foodEaten == false) {
+    fill(255,0,0);
+    ellipse(foodParticleX,foodParticleY,50,50);
+  }
+  else {
+  }
+}
 class Bacteria {
   int myX, myY;
   int colour = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
@@ -22,8 +33,8 @@ class Bacteria {
     walk();
   }
   void walk() {
-    myX+=(int)(Math.random()*4)-1;
-    myY+=(int)(Math.random()*5)-1;
+    myX+=(int)(Math.random()*13)-5+(mouseX-myX)/15;
+    myY+=(int)(Math.random()*13)-5+(mouseY-myY)/15;
   }
   void show() {
     fill(colour);
