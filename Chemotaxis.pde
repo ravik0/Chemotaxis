@@ -1,5 +1,8 @@
 Bacteria[] group;
-boolean foodEaten = true;
+boolean foodEaten = false;
+int foodParticleX;
+int foodParticleY;
+color foodParticle = color(255,0,0);
 void setup() {
   size(400,400);
   group = new Bacteria[50];
@@ -13,16 +16,19 @@ void draw() {
     group[i].show();
     group[i].walk();
   }
+  if (foodEaten == false) {
+    fill(foodParticle);
+    ellipse(foodParticleX,foodParticleY,50,50);
+    if (group[1].myX == 0) {
+      foodEaten = true;
+      foodParticle= color(255,255,255);
+    }
+  }
 }
 void mouseClicked() {
-  int foodParticleX = (int)(Math.random()*401);
-  int foodParticleY = (int)(Math.random()*401);
-  if (foodEaten == false) {
-    fill(255,0,0);
-    ellipse(foodParticleX,foodParticleY,50,50);
-  }
-  else {
-  }
+  foodParticleX = (int)(Math.random()*401);
+  foodParticleY = (int)(Math.random()*401);
+  foodParticle = color(255,0,0);
 }
 class Bacteria {
   int myX, myY;
@@ -33,8 +39,14 @@ class Bacteria {
     walk();
   }
   void walk() {
-    myX+=(int)(Math.random()*13)-5+(mouseX-myX)/15;
-    myY+=(int)(Math.random()*13)-5+(mouseY-myY)/15;
+    if (foodEaten == false) {
+      myX+=(int)(Math.random()*13)-5+(foodParticleX-myX)/15;
+      myY+=(int)(Math.random()*13)-5+(foodParticleY-myY)/15;
+    }
+    else {
+      myX+=(int)(Math.random()*13)-5+(mouseX-myX)/15;
+      myY+=(int)(Math.random()*13)-5+(mouseY-myY)/15;
+    }
   }
   void show() {
     fill(colour);
