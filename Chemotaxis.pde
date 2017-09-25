@@ -15,6 +15,12 @@ void draw() {
   for (int i = 0; i < group.length; i++) {
     group[i].show();
     group[i].walk();
+    if (foodEaten == false) {
+      if (group[i].myX+group[i].foodClose == foodParticleX && group[i].myY+group[i].foodClose == foodParticleY) {
+        foodEaten = true;
+        foodParticle= color(255,255,255);
+      }
+    }
   }
 }
 void mouseClicked() {
@@ -38,10 +44,6 @@ class Bacteria {
       myY+=(int)(Math.random()*13)-5+(foodParticleY-myY)/15;
       fill(foodParticle);
       ellipse(foodParticleX,foodParticleY,50,50);
-      if (myX+foodClose == foodParticleX && myY+foodClose == foodParticleY) {
-        foodEaten = true;
-        foodParticle= color(255,255,255);
-      }
     }
     else {
       myX+=(int)(Math.random()*13)-5+(mouseX-myX)/15;
