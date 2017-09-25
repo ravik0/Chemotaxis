@@ -19,6 +19,7 @@ void draw() {
         foodEaten = true;
         foodParticle= color(255,255,255);
     }
+    loop();
   }
 }
 void mouseClicked() {
