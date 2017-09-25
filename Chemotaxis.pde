@@ -15,11 +15,9 @@ void draw() {
   for (int i = 0; i < group.length; i++) {
     group[i].show();
     group[i].walk();
-    if (foodEaten == false) {
-      if (group[i].myX+group[i].foodClose == foodParticleX && group[i].myY+group[i].foodClose == foodParticleY) {
+    if (group[i].myX+group[i].foodClose == foodParticleX && group[i].myY+group[i].foodClose == foodParticleY) {
         foodEaten = true;
         foodParticle= color(255,255,255);
-      }
     }
   }
 }
