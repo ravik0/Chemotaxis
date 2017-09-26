@@ -1,8 +1,11 @@
 Bacteria[] group;
+String[] words = {"Food", "Money", "Alcohol", "Drugs"};
 boolean foodEaten = false;
 int foodParticleX;
 int foodParticleY;
+int foodWord = (int)(Math.random()*words.length);
 color foodParticle = color(255,0,0);
+color foodParticleWord = color(255,255,255);
 void setup() {
   size(400,400);
   group = new Bacteria[50];
@@ -26,6 +29,7 @@ void mouseClicked() {
   foodParticleX = (int)(Math.random()*401);
   foodParticleY = (int)(Math.random()*401);
   foodParticle = color(255,0,0);
+  foodWord = (int)(Math.random()*words.length);
 }
 class Bacteria {
   int myX, myY;
@@ -41,6 +45,8 @@ class Bacteria {
       myY+=(int)(Math.random()*13)-5+(foodParticleY-myY)/15;
       fill(foodParticle);
       ellipse(foodParticleX,foodParticleY,50,50);
+      fill(foodParticleWord);
+      text(words[foodWord], foodParticleX-18,foodParticleY+3);
     }
     else {
       myX+=(int)(Math.random()*13)-5+(mouseX-myX)/15;
